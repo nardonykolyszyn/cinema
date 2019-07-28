@@ -6,12 +6,12 @@ module Stateable
     extend ActiveSupport::Concern
     ## AASM
     AASM_STATES = {
-      open: {
+      available: {
         initial: true,
         values: %i[closed unavailable]
       },
 
-      closed: {
+      busy: {
         initial: false,
         values: %i[open unavailable]
       },
