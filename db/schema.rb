@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_165930) do
+ActiveRecord::Schema.define(version: 2019_07_28_223244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "functions", force: :cascade do |t|
+    t.date "show_at"
+    t.bigint "movie_id"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_functions_on_movie_id"
+    t.index ["room_id"], name: "index_functions_on_room_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "name"
+    t.integer "year"
+    t.integer "gender", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -24,4 +42,6 @@ ActiveRecord::Schema.define(version: 2019_07_28_165930) do
     t.string "aasm_state"
   end
 
+  add_foreign_key "functions", "movies", on_delete: :cascade
+  add_foreign_key "functions", "rooms", on_delete: :cascade
 end
