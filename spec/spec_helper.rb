@@ -20,6 +20,8 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  # Extend matchers from shoulda_matchers
+  config.include StateMachineRspec::Matchers
   # Factory girl rails
   config.include FactoryGirl::Syntax::Methods
   # database_cleaner implementation
