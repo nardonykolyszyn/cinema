@@ -19,7 +19,7 @@ class Room < ApplicationRecord
   after_validation :assign_identifier, if: :new_record?
   ## Validations
   # Rubocop marks as a fault one-single validation for several attributes.
-  validates :capacity, presence: true
+  validates :capacity, presence: true, numericality: { less_than_or_equal_to: 10 }
   validates :name,
             presence: true,
             uniqueness: true,
