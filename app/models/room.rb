@@ -12,8 +12,8 @@
 #  updated_at :datetime         not null
 #
 
-
 class Room < ApplicationRecord
+  include Stateable
   ## Validations
   # Rubocop marks as a fault one-single validation for several attributes.
   validates :capacity, presence: true
