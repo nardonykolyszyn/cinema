@@ -13,7 +13,10 @@
 #
 
 class Room < ApplicationRecord
+  ## AASM support
   include Stateable
+  ## Callbacks
+  after_validation :assign_identifier, if: :new_record?
   ## Validations
   # Rubocop marks as a fault one-single validation for several attributes.
   validates :capacity, presence: true
@@ -21,4 +24,10 @@ class Room < ApplicationRecord
             presence: true,
             uniqueness: true,
             format: { with: /[a-zA-Z]/, message: 'may only contain letters' }
+
+  private
+
+  def assign_identifier
+    self.identifier = "#{SecureRandom.base64[0..4]}-#{name.parameterize}"
+  end
 end
