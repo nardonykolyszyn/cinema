@@ -59,3 +59,5 @@ group :development do
 end
 
 gem "aasm", "~> 5.0"
+
+gem "active_model_serializers", "~> 0.10.10"
