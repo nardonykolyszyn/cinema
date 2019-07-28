@@ -22,8 +22,8 @@ RSpec.configure do |config|
   # assertions if you prefer.
   # Extend matchers from shoulda_matchers
   config.include StateMachineRspec::Matchers
-  # Factory girl rails
-  config.include FactoryGirl::Syntax::Methods
+  # Factory bot rails
+  config.include FactoryBot::Syntax::Methods
   # database_cleaner implementation
   config.use_transactional_fixtures = false
 
