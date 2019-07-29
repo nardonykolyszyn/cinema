@@ -16,10 +16,10 @@ class FunctionSerializer < ActiveModel::Serializer
   attributes :id, :show_at, :room, :movie
 
   def room
-    RoomSerializer.new(object.room).attributes
+    ::RoomSerializer.new(object.room).attributes
   end
 
   def movie
-    MovieSerializer.new(object.movie).attributes
+    ::MovieSerializer.new(object.movie).attributes
   end
 end
