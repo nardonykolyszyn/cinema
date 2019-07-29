@@ -2,6 +2,9 @@
 
 This is a very simple and minimalist cinema management API.
 
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/6d6651ebdfa6c0e9adee/maintainability)](https://codeclimate.com/github/devpolish/cinema/maintainability)
+
 ## Models
 
 - Clients
