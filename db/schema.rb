@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_223244) do
+ActiveRecord::Schema.define(version: 2019_07_29_005321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "document_type", default: 0
+    t.string "document_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "function_movies", force: :cascade do |t|
+    t.bigint "function_id"
+    t.bigint "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["function_id"], name: "index_function_movies_on_function_id"
+    t.index ["movie_id"], name: "index_function_movies_on_movie_id"
+  end
 
   create_table "functions", force: :cascade do |t|
     t.date "show_at"
@@ -42,6 +60,21 @@ ActiveRecord::Schema.define(version: 2019_07_28_223244) do
     t.string "aasm_state"
   end
 
+  create_table "show_functions", force: :cascade do |t|
+    t.bigint "function_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_show_functions_on_client_id"
+    t.index ["function_id"], name: "index_show_functions_on_function_id"
+  end
+
+  add_foreign_key "function_movies", "functions", on_delete: :cascade
+  add_foreign_key "function_movies", "movies", on_delete: :cascade
   add_foreign_key "functions", "movies", on_delete: :cascade
   add_foreign_key "functions", "rooms", on_delete: :cascade
+  add_foreign_key "show_functions", "clients", on_delete: :cascade
+  add_foreign_key "show_functions", "functions", on_delete: :cascade
 end
