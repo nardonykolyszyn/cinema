@@ -4,7 +4,7 @@ module Api
   module V1
     class ApiSitesController < ApplicationController
       protect_from_forgery with: :null_session
-      before_action :assign_resource
+      before_action :assign_resource, except: %i[index create]
       before_action :assign_page
 
       private
