@@ -13,7 +13,6 @@
 #
 
 class Function < ApplicationRecord
-  ## Class constants
   MOVIE_PER_DAY = 1
   ## Delegator
   delegate :capacity, to: :room, prefix: true
@@ -31,7 +30,11 @@ class Function < ApplicationRecord
 
   private
 
+  def date_exists
+    room.functions_dates.count(show_at.strftime('%d%m%y')) == MOVIE_PER_DAY
+  end
+
   def in_day_functions
-    errors.add(:room, "this room can't present any other movie today") unless (room.today_functions.size || 0) < MOVIE_PER_DAY
+    errors.add(:room, "this room can't present any other movie today") if date_exists
   end
 end

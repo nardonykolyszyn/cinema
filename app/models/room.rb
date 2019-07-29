@@ -32,6 +32,10 @@ class Room < ApplicationRecord
     functions.lazy.select { |function| function.shows_at.day == Time.now.day }
   end
 
+  def functions_dates
+    functions.pluck(:show_at).collect { |d| d.strftime('%d%m%y') }
+  end
+
   private
 
   def assign_identifier
