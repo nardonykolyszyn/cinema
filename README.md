@@ -1,24 +1,14 @@
-# README
+# Cinema API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a very simple and minimalist cinema management API.
 
-Things you may want to cover:
+## Models
 
-* Ruby version
+- Clients
+- Movie
+- Room
+- Function
+- ShowFunction
 
-* System dependencies
+## ERD
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
