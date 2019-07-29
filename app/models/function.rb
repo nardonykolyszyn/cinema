@@ -12,13 +12,17 @@
 #  updated_at :datetime         not null
 #
 
-
 class Function < ApplicationRecord
+  ## Delegator
+  delegate :capacity, to: :room, prefix: true
   ## Validations
   validates :show_at, presence: true
   ## Associations
-  has_many :function_movies
-  has_many :movies, through: :function_movies
+  has_many :show_functions
   belongs_to :movie
   belongs_to :room
+  ## Instance methods
+  def current_show_functions
+    show_functions
+  end
 end
