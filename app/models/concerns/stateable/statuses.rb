@@ -8,17 +8,17 @@ module Stateable
     AASM_STATES = {
       available: {
         initial: true,
-        values: %i[closed unavailable]
+        values: %i[busy unavailable]
       },
 
       busy: {
         initial: false,
-        values: %i[open unavailable]
+        values: %i[available unavailable]
       },
 
       unavailable: {
         initial: false,
-        values: %i[open]
+        values: %i[available]
       }
     }.freeze
   end
