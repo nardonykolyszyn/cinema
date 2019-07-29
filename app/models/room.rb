@@ -10,6 +10,7 @@
 #  capacity   :integer          default(1)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  aasm_state :string
 #
 
 class Room < ApplicationRecord
@@ -24,7 +25,9 @@ class Room < ApplicationRecord
             presence: true,
             uniqueness: true,
             format: { with: /[a-zA-Z]/, message: 'may only contain letters' }
-
+  ## Associations
+  has_many :functions
+  
   private
 
   def assign_identifier
