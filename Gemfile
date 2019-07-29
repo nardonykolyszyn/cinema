@@ -69,3 +69,5 @@ gem "faker", "~> 1.9"
 gem "active_model_serializers", "~> 0.10.10"
 
 gem "will_paginate", "~> 3.1"
+
+gem "rails-erd", "~> 1.6"
