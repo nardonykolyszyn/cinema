@@ -27,7 +27,7 @@ class Room < ApplicationRecord
             format: { with: /[a-zA-Z]/, message: 'may only contain letters' }
   ## Associations
   has_many :functions
-  
+
   private
 
   def assign_identifier
