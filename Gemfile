@@ -63,3 +63,5 @@ gem "aasm", "~> 5.0"
 gem 'fast_jsonapi'
 
 gem "pg_search", "~> 2.3"
+
+gem "skylight", "~> 4.1"
