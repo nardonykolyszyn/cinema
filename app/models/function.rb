@@ -13,10 +13,13 @@
 #
 
 class Function < ApplicationRecord
+  ## Class constants
+  MOVIE_PER_DAY = 1
   ## Delegator
   delegate :capacity, to: :room, prefix: true
   ## Validations
   validates :show_at, presence: true
+  validate  :in_day_functions
   ## Associations
   has_many :show_functions
   belongs_to :movie
@@ -24,5 +27,11 @@ class Function < ApplicationRecord
   ## Instance methods
   def current_show_functions
     show_functions
+  end
+
+  private
+
+  def in_day_functions
+    errors.add(:room, "this room can't present any other movie today") unless (room.today_functions.size || 0) < MOVIE_PER_DAY
   end
 end

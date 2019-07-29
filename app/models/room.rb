@@ -27,6 +27,10 @@ class Room < ApplicationRecord
             format: { with: /[a-zA-Z]/, message: 'may only contain letters' }
   ## Associations
   has_many :functions
+  ## Instance methods
+  def today_functions
+    functions.lazy.select { |function| function.shows_at.day == Time.now.day }
+  end
 
   private
 
