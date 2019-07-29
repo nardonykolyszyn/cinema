@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_005321) do
+ActiveRecord::Schema.define(version: 2019_07_29_002452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 2019_07_29_005321) do
     t.string "document_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "function_movies", force: :cascade do |t|
-    t.bigint "function_id"
-    t.bigint "movie_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["function_id"], name: "index_function_movies_on_function_id"
-    t.index ["movie_id"], name: "index_function_movies_on_movie_id"
   end
 
   create_table "functions", force: :cascade do |t|
@@ -71,8 +62,6 @@ ActiveRecord::Schema.define(version: 2019_07_29_005321) do
     t.index ["function_id"], name: "index_show_functions_on_function_id"
   end
 
-  add_foreign_key "function_movies", "functions", on_delete: :cascade
-  add_foreign_key "function_movies", "movies", on_delete: :cascade
   add_foreign_key "functions", "movies", on_delete: :cascade
   add_foreign_key "functions", "rooms", on_delete: :cascade
   add_foreign_key "show_functions", "clients", on_delete: :cascade
