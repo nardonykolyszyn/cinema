@@ -65,3 +65,5 @@ gem 'fast_jsonapi'
 gem "pg_search", "~> 2.3"
 
 gem "skylight", "~> 4.1"
+
+gem "faker", "~> 1.9"
