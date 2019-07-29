@@ -35,7 +35,7 @@ module Api
 
       def update
         @response = if @movie.update(movie_params)
-                      { movie: @movie, status: :ok }
+                      { movie: MovieSerializer.new(@movie), status: :ok }
                     else
                       {
                         errors: @movie.errors.full_messages.to_sentence,
