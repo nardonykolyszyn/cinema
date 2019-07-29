@@ -7,7 +7,7 @@
 #  id              :bigint           not null, primary key
 #  first_name      :string
 #  last_name       :string
-#  document_type   :integer          default(0)
+#  document_type   :integer          default("ce")
 #  document_number :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
