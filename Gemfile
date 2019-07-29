@@ -60,10 +60,12 @@ end
 
 gem "aasm", "~> 5.0"
 
-gem 'fast_jsonapi'
-
 gem "pg_search", "~> 2.3"
 
 gem "skylight", "~> 4.1"
 
 gem "faker", "~> 1.9"
+
+gem "active_model_serializers", "~> 0.10.10"
+
+gem "will_paginate", "~> 3.1"
