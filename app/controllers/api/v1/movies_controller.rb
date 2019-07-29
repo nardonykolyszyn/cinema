@@ -3,30 +3,58 @@
 module Api
   module V1
     class MoviesController < ApiSitesController
+      skip_before_action :assign_resource, only: %i[index create]
+
       def index
-        @movies = Movie.all
-        render json: { movies: MovieSerializer.new(@movies).serializable_hash }
+        @movies = Movie.all.paginate(page: @page, per_page: 10)
+        render json: {
+          movies: ActiveModelSerializers::SerializableResource.new(@movies),
+          status: :ok
+        }
       end
 
       def show
-        @movie = Movie.find(params[:id])
-        render json: { movie: MovieSerializer.new(@movie) }
+        render json: {
+          movie: MovieSerializer.new(@movie),
+          status: :ok
+        }
       end
 
       def create
         @movie = Movie.new(movie_params)
-        if @movie.save
-          @response = { movie: MovieSerializer.new(@movie) }
-        else
-          @response = { errors: @movie.errors }
-        end
+        @response = if @movie.save
+                      { movie: MovieSerializer.new(@movie) }
+                    else
+                      {
+                        errors: @movie.errors.full_messages.to_sentence,
+                        status: :unprocessable_entity
+                      }
+                    end
         render json: @response
       end
 
       def update
+        @response = if @movie.update(movie_params)
+                      { movie: @movie, status: :ok }
+                    else
+                      {
+                        errors: @movie.errors.full_messages.to_sentence,
+                        status: :unprocessable_entity
+                      }
+                    end
+        render json: @response
       end
 
       def destroy
+        @response = if @movie.destroy
+                      { message: 'Movie has been deleted successfully' }
+                    else
+                      {
+                        errors: @movie.errors.full_messages.to_sentence,
+                        status: :unprocessable_entity
+                      }
+                    end
+        render json: @response
       end
 
       private
