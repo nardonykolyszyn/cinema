@@ -9,11 +9,13 @@ module Stateable
     include AASM
     aasm do
       # It defines initial states
-      Statuses::AASM_STATES.keys.each { |key| state key, initial: Statuses::AASM_STATES[key][:initial] }
+      Statuses::AASM_STATES.keys.each do |key|
+        state key, initial: Statuses::AASM_STATES[key][:initial]
+      end
       # It defines transitions
       Statuses::AASM_STATES.each do |node, edges|
         event node do
-          transitions from: node, to: edges
+          transitions from: edges[:values], to: node
         end
       end
     end
