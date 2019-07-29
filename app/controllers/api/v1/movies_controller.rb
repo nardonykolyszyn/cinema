@@ -3,7 +3,7 @@
 module Api
   module V1
     class MoviesController < ApiSitesController
-      
+
       def index
         @movies = Movie.all.paginate(page: @page, per_page: 10)
         render json: {
